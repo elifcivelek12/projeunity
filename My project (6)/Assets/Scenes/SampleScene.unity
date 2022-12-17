@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 726578293}
   - component: {fileID: 726578296}
   - component: {fileID: 726578295}
+  - component: {fileID: 726578297}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -417,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726578290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.72, y: -1.982, z: 0}
+  m_LocalPosition: {x: -45.72, y: -1.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -471,6 +472,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &726578297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726578290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe134bee38676b4987cf90c0b23f0c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  isGrounded: 0
 --- !u!1 &852618219
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +499,7 @@ GameObject:
   - component: {fileID: 852618223}
   - component: {fileID: 852618222}
   - component: {fileID: 852618224}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'zemin '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +544,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 779670289
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
