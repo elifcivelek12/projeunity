@@ -6,20 +6,20 @@ public class dsmovement : MonoBehaviour
     Rigidbody2D enemyRigidBody2D;
     public int UnitsToMove = 3;
     public float EnemySpeed = 500;
-    public bool _isFacingRight;
-    private float _startPos;
-    private float _endPos;
+    public bool FacingRight;
+    private float startPos;
+    private float endPos;
 
-    public bool _moveRight = true;
+    public bool moveRight = true;
 
 
     
     public void Awake()
     {
          enemyRigidBody2D = GetComponent<Rigidbody2D>();
-        _startPos = transform.position.x;
-        _endPos = _startPos + UnitsToMove;
-        _isFacingRight = transform.localScale.x > 0;
+         startPos = transform.position.x;
+         endPos = startPos + UnitsToMove;
+         FacingRight = transform.localScale.x > 0;
     }
 
 
@@ -27,24 +27,24 @@ public class dsmovement : MonoBehaviour
 public void Update()
 {
 
-    if (_moveRight)
+    if (moveRight)
     {
         enemyRigidBody2D.AddForce(Vector2.right * EnemySpeed * Time.deltaTime);
-        if (!_isFacingRight)
+        if (!FacingRight)
             Flip();
     }
 
-    if (enemyRigidBody2D.position.x >= _endPos)
-        _moveRight = false;
+    if (enemyRigidBody2D.position.x >= endPos)
+        moveRight = false;
 
-    if (!_moveRight)
+    if (!moveRight)
     {
         enemyRigidBody2D.AddForce(-Vector2.right * EnemySpeed * Time.deltaTime);
-        if (_isFacingRight)
+        if (FacingRight)
             Flip();
     }
-    if (enemyRigidBody2D.position.x <= _startPos)
-        _moveRight = true;
+    if (enemyRigidBody2D.position.x <= startPos)
+        moveRight = true;
 
 
 }
@@ -52,7 +52,7 @@ public void Update()
     public void Flip()
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        _isFacingRight = transform.localScale.x > 0;
+        FacingRight = transform.localScale.x > 0;
     }
 
 }
