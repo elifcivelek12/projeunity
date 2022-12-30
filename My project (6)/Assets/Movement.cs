@@ -6,6 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
+
     public LayerMask groundLayers;
     public bool isGrounded;
 
@@ -25,15 +26,15 @@ public class Movement : MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
-            rigidBody.velocity += new Vector2(0, 5f);
+            rigidBody.velocity += new Vector2(0, 8f);
         }
     }
 
     private bool IsGrounded()
     {
         return Physics2D.OverlapArea(
-            new Vector2(transform.position.x - .5f, transform.position.y - .5f),
-            new Vector2(transform.position.x + .5f, transform.position.y - .51f),
+            new Vector2(transform.position.x - .45f, transform.position.y - .7f),
+            new Vector2(transform.position.x + .45f, transform.position.y - .71f),
             groundLayers
         );
     }

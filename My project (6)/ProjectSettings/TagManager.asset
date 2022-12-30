@@ -6,6 +6,7 @@ TagManager:
   tags:
   - poweru
   - dusman
+  - coin
   layers:
   - Default
   - TransparentFX
