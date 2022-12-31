@@ -14,7 +14,15 @@ public class HealthSystem : MonoBehaviour
         health = Math.Max(0, health - damage);
         if(health <= 0)
         {
-            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name, LoadSceneMode.Single);
+        }
+    }
+
+    private void Update()
+    {
+        if(transform.position.y < -20)
+        {
+            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name, LoadSceneMode.Single);
         }
     }
 

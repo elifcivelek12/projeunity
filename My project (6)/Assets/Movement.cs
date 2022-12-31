@@ -9,10 +9,17 @@ public class Movement : MonoBehaviour
 
     public LayerMask groundLayers;
     public bool isGrounded;
+    public int jumpIncreaseTimer;
+
+    public Sprite idleSprite;
+    public Sprite movingSprite;
+    
+    private SpriteRenderer renderer2;
 
     // Start is called before the first frame update
     private void Start()
     {
+        renderer2 = GetComponent<SpriteRenderer>();
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -20,13 +27,33 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         float xAxis = Input.GetAxisRaw("Horizontal");
+
+        if(xAxis > 0)
+        {
+            renderer2.sprite = movingSprite;
+            renderer2.flipX = false;
+        } else if(xAxis < 0)
+        {
+            renderer2.sprite = movingSprite;
+            renderer2.flipX = true;
+        } else
+        {
+            renderer2.sprite = idleSprite;
+            renderer2.flipX = false;
+        }
+
         rigidBody.velocity = new Vector2(xAxis * 5f, rigidBody.velocity.y);
 
         isGrounded = IsGrounded();
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
-            rigidBody.velocity += new Vector2(0, 8f);
+            rigidBody.velocity += new Vector2(0, jumpIncreaseTimer > 0? 10:8);
+        }
+
+        if(jumpIncreaseTimer > 0)
+        {
+            jumpIncreaseTimer--;
         }
     }
 
