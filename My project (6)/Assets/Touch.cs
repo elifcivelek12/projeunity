@@ -8,10 +8,12 @@ public class Touch : MonoBehaviour
     private bool debounce = false;
     private Vector3 startingCoordinates;
     private float timer;
+    private float disappearTimer;
 
     private void Start()
     {
         timer = 0;
+        disappearTimer = 0;
         debounce = false;
         startingCoordinates = transform.position;
     }
@@ -21,8 +23,9 @@ public class Touch : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && !debounce)
         {
             debounce = true;
+            disappearTimer = 600;
             movement.jumpIncreaseTimer += 600;
-            this.gameObject.SetActive(false);
+            GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -32,5 +35,15 @@ public class Touch : MonoBehaviour
         float sin = Mathf.Sin(timer / 60f) / 2f;
 
         transform.position = startingCoordinates + new Vector3(0, sin, 0);
+
+        if(disappearTimer > 0)
+        {
+            disappearTimer--;
+            if (disappearTimer == 0)
+            {
+                GetComponent<SpriteRenderer>().enabled = true;
+                debounce = false;
+            }
+        }
     }
 }
